@@ -8,4 +8,4 @@
 1.druid.properties数据库连接配置文件
 2.各种前端框架
 
-##具体详情见readme.pptx
+## 具体详情见readme.pptx
