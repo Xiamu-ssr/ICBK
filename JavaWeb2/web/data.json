@@ -1,0 +1,17 @@
+{
+  "code":0,"msg":"","count":1000,"data":
+
+ {
+  "item": [{
+    "bookid": "10001"
+  ,"bookname": "杜甫"
+  ,"author": "test@email.com"
+  ,"count": "男"
+  ,"remark": "浙江杭州"
+  ,"typeid": "2"
+  ,"publisher": "116"
+  ,"status": "1"
+  ,"typename": "108"
+  }]
+}
+}

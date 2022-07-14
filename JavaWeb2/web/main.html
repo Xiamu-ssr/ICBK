@@ -1,0 +1,617 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>冰淇淋书城</title>
+    <link rel="stylesheet" href="frame/bs-5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <script src="frame/bs-5.2.0/js/bootstrap.min.js"></script>
+    <script src="frame/bs-5.2.0/js/bootstrap.bundle.min.js"></script>
+    <script src="frame/echarts/echarts.js"></script>
+    <style>
+        .routeImg{
+            box-shadow: 0px 0px 10px rgba(13, 202, 240, 0.5);
+            animation-duration: 0.2s;
+            animation-name: routeImgBack;
+            animation-fill-mode: forwards;
+        }
+        .routeImg:hover
+        {
+            animation-duration: 0.3s;
+            animation-name: routeImg;
+            animation-fill-mode: forwards;
+        }
+        @keyframes routeImg {
+            from{transform:rotate3d(1,-1,0,-0deg);}
+            to{transform:rotate3d(1,-1,0,-20deg);}
+        }
+        @keyframes routeImgBack {
+            0%{transform:rotate3d(1,-1,0,-20deg);}
+            50%{transform:rotate3d(1,1,0,-20deg);}
+            100%{transform:rotate3d(1,1,0,-0deg);}
+        }
+    </style>
+</head>
+<body style="background-color: rgba(255,151,0,0.1)">
+<br>
+<div class="container">
+    <div class="row">
+<!--        导航-->
+        <div class="col-lg-12 mb-5">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius: 10px;box-shadow: 0px 0px 7px rgba(13,202,240,0.5)">
+                <div class="container-fluid">
+                    <!--                    ICBK图标及标签-->
+                    <div class="card bg-light" style="border: none">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="img/main-1.png">
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-6 align-items-center d-flex text-info">
+                                <div><b style="font-size: 30px;">ICBK&nbsp;&nbsp;</b></div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                    <!--                    宽度变小时,导航收纳-->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <!--                            主页-->
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="main.html"><button class="btn btn-outline-info"><b>主 页</b></button></a>
+                            </li>
+                            <!--                            其他分类-->
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="BookType.html?type=计算机与互联网"><button class="btn btn-outline-info"><b>计算机与互联网</b></button></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="BookType.html?type=文学"><button class="btn btn-outline-info"><b>文学</b></button></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="BookType.html?type=科技科普"><button class="btn btn-outline-info"><b>科技科普</b></button></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="BookType.html?type=生活"><button class="btn btn-outline-info"><b>生活</b></button></a>
+                            </li>
+                            <!--                            省略分类-->
+                            <li class="nav-item dropdown">
+                                <div class="btn-group mt-2">
+                                    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <b>被折叠的</b>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="BookType.html?type=成功励志">成功励志</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=教育考试">教育考试</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=经济管理">经济管理</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=人文社科">人文社科</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=少儿">少儿</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=小说">小说</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=艺术设计">艺术设计</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="#">Nothing Here</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="d-flex">
+                            <input class="form-control me-2 border-info text-info" type="search" placeholder="Search" aria-label="Search" disabled>
+                            <button class="btn btn-outline-info" type="button" disabled>Search</button>
+                        </div>
+                    </div>
+                    <!--                    账户头像-->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle bg-light" style="border: none;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="img/Brief-account.png">
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
+                            <li><b id="UserName" class="font-kai"></b></li>
+                            <script>
+                                //读取cookie
+                                function getCookie(name)
+                                {
+                                    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+                                    if(arr=document.cookie.match(reg))
+
+                                        return decodeURI(arr[2]);
+                                    else
+                                        return null;
+                                }
+                                document.getElementById("UserName").innerHTML = getCookie("UserName");
+                            </script>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="index.html">切换账号</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+<!--        轮播首页数据显示-->
+        <div id="carouselExampleIndicators1" class="carousel carousel-dark slide mt-4 col-lg-12" style="background-color: white;border-radius: 10px;box-shadow: 0px 0px 10px rgba(13,202,240,0.5);" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1"></li>
+                <li data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container m-4">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div id="E-11" style="height: 600px;"></div>
+                                <script>
+                                    var chartDom1 = document.getElementById('E-11');
+                                    var myChart1 = echarts.init(chartDom1);
+                                    var option1;
+
+                                    option1 = {
+                                        graphic: {
+                                            elements: [
+                                                {
+                                                    type: 'text',
+                                                    left: 'center',
+                                                    top: 'center',
+                                                    style: {
+                                                        text: 'HI\nWELCOME\nICBK',
+                                                        fontSize: 80,
+                                                        fontWeight: 'bold',
+                                                        lineDash: [0, 200],
+                                                        lineDashOffset: 0,
+                                                        fill: 'transparent',
+                                                        stroke: '#000',
+                                                        lineWidth: 1
+                                                    },
+                                                    keyframeAnimation: {
+                                                        duration: 3000,
+                                                        loop: true,
+                                                        keyframes: [
+                                                            {
+                                                                percent: 0.7,
+                                                                style: {
+                                                                    fill: 'transparent',
+                                                                    lineDashOffset: 200,
+                                                                    lineDash: [200, 0]
+                                                                }
+                                                            },
+                                                            {
+                                                                // Stop for a while.
+                                                                percent: 0.8,
+                                                                style: {
+                                                                    fill: 'transparent'
+                                                                }
+                                                            },
+                                                            {
+                                                                percent: 1,
+                                                                style: {
+                                                                    fill: 'black'
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    };
+
+                                    option1 && myChart1.setOption(option1);
+                                </script>
+                            </div>
+                            <div class="col-md-6 routeImg" style="border-radius: 10px;">
+                                <div id="E-12" style="height: 600px;"></div>
+                                <script>
+                                    //获取不同类型书籍数量
+                                    var request = new XMLHttpRequest();
+                                    request.open("POST","TypeCount",true);
+                                    request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+                                    //不send就没有回馈
+                                    var message = "BookName="+"\"B\"";
+                                    request.send(message);
+                                    request.onreadystatechange = function () {
+                                        if (request.readyState === 4 && request.status === 200) {
+                                            var json = request.responseText;
+                                            var params = JSON.parse(json);
+                                            // console.log(params);
+                                            var chartDom2 = document.getElementById('E-12');
+                                            var myChart2 = echarts.init(chartDom2);
+                                            var option2;
+
+                                            option2 = {
+                                                title:{
+                                                    text:"书籍数量分布\n\n",
+                                                    left:"center"
+                                                },
+                                                tooltip: {
+                                                    trigger: 'item'
+                                                },
+                                                legend: {
+                                                    top: '5%',
+                                                    left: 'center'
+                                                },
+                                                series: [
+                                                    {
+                                                        name: 'Access From',
+                                                        type: 'pie',
+                                                        radius: ['40%', '70%'],
+                                                        avoidLabelOverlap: false,
+                                                        itemStyle: {
+                                                            borderRadius: 10,
+                                                            borderColor: '#fff',
+                                                            borderWidth: 2
+                                                        },
+                                                        label: {
+                                                            show: false,
+                                                            position: 'center'
+                                                        },
+                                                        emphasis: {
+                                                            label: {
+                                                                show: true,
+                                                                fontSize: '40',
+                                                                fontWeight: 'bold'
+                                                            }
+                                                        },
+                                                        labelLine: {
+                                                            show: false
+                                                        },
+                                                        data: [
+                                                            { value: params[0].num, name: '成功励志' },
+                                                            { value: params[1].num, name: '计算机与互联网' },
+                                                            { value: params[2].num, name: '教育考试' },
+                                                            { value: params[3].num, name: '经济管理' },
+                                                            { value: params[4].num, name: '科技科普' },
+                                                            { value: params[5].num, name: '人文社科' },
+                                                            { value: params[6].num, name: '少儿' },
+                                                            { value: params[7].num, name: '生活' },
+                                                            { value: params[8].num, name: '文学' },
+                                                            { value: params[9].num, name: '小说' },
+                                                            { value: params[10].num, name: '艺术设计' }
+                                                        ]
+                                                    }
+                                                ]
+                                            };
+
+                                            option2 && myChart2.setOption(option2);
+                                        }
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container m-4">
+                        <div class="row">
+                            <div class="col-md-12 d-flex align-items-center justify-content-center">
+                                <div id="E-21" class="" style="width:1600px;height: 600px;"></div>
+                                <script>
+                                var app = {};
+                                var chartDom3 = document.getElementById('E-21');
+                                var myChart3 = echarts.init(chartDom3);
+                                var option3;
+
+                                let xData = [];
+                                let yData = [];
+                                let data = [];
+                                for (let y = 0; y < 10; y++) {
+                                    yData.push(y);
+                                    for (let x = 0; x < 10; x++) {
+                                        data.push([x, y, 10]);
+                                    }
+                                }
+                                for (let x = 0; x < 10; x++) {
+                                    xData.push(x);
+                                }
+                                const options = [
+                                    {
+                                        grid: {
+                                            left: 0,
+                                            right: 0,
+                                            top: 0,
+                                            bottom: 0
+                                        },
+                                        xAxis: {
+                                            show: false,
+                                            type: 'category',
+                                            data: xData
+                                        },
+                                        yAxis: {
+                                            show: false,
+                                            type: 'category',
+                                            data: yData
+                                        },
+                                        series: [
+                                            {
+                                                type: 'scatter',
+                                                data: data,
+                                                symbol: 'roundRect',
+                                                symbolKeepAspect: true,
+                                                universalTransition: true,
+                                                symbolSize: 50
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        series: [
+                                            {
+                                                type: 'scatter',
+                                                symbol: 'circle'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        // heart
+                                        series: [
+                                            {
+                                                symbol:
+                                                    'path://M23.6 2c-3.363 0-6.258 2.736-7.599 5.594-1.342-2.858-4.237-5.594-7.601-5.594-4.637 0-8.4 3.764-8.4 8.401 0 9.433 9.516 11.906 16.001 21.232 6.13-9.268 15.999-12.1 15.999-21.232 0-4.637-3.763-8.401-8.4-8.401z'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        // happy
+                                        series: [
+                                            {
+                                                symbol:
+                                                    'path://M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM22 8c1.105 0 2 1.343 2 3s-0.895 3-2 3-2-1.343-2-3 0.895-3 2-3zM10 8c1.105 0 2 1.343 2 3s-0.895 3-2 3-2-1.343-2-3 0.895-3 2-3zM16 28c-5.215 0-9.544-4.371-10-9.947 2.93 1.691 6.377 2.658 10 2.658s7.070-0.963 10-2.654c-0.455 5.576-4.785 9.942-10 9.942z'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        // evil
+                                        series: [
+                                            {
+                                                symbol:
+                                                    'path://M32 2c0-1.422-0.298-2.775-0.833-4-1.049 2.401-3.014 4.31-5.453 5.287-2.694-2.061-6.061-3.287-9.714-3.287s-7.021 1.226-9.714 3.287c-2.439-0.976-4.404-2.886-5.453-5.287-0.535 1.225-0.833 2.578-0.833 4 0 2.299 0.777 4.417 2.081 6.106-1.324 2.329-2.081 5.023-2.081 7.894 0 8.837 7.163 16 16 16s16-7.163 16-16c0-2.871-0.757-5.565-2.081-7.894 1.304-1.689 2.081-3.806 2.081-6.106zM18.003 11.891c0.064-1.483 1.413-2.467 2.55-3.036 1.086-0.543 2.16-0.814 2.205-0.826 0.536-0.134 1.079 0.192 1.213 0.728s-0.192 1.079-0.728 1.213c-0.551 0.139-1.204 0.379-1.779 0.667 0.333 0.357 0.537 0.836 0.537 1.363 0 1.105-0.895 2-2 2s-2-0.895-2-2c0-0.037 0.001-0.073 0.003-0.109zM8.030 8.758c0.134-0.536 0.677-0.862 1.213-0.728 0.045 0.011 1.119 0.283 2.205 0.826 1.137 0.569 2.486 1.553 2.55 3.036 0.002 0.036 0.003 0.072 0.003 0.109 0 1.105-0.895 2-2 2s-2-0.895-2-2c0-0.527 0.204-1.005 0.537-1.363-0.575-0.288-1.228-0.528-1.779-0.667-0.536-0.134-0.861-0.677-0.728-1.213zM16 26c-3.641 0-6.827-1.946-8.576-4.855l2.573-1.544c1.224 2.036 3.454 3.398 6.003 3.398s4.779-1.362 6.003-3.398l2.573 1.544c-1.749 2.908-4.935 4.855-8.576 4.855z'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        // hipster
+                                        series: [
+                                            {
+                                                symbol:
+                                                    'path://M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM22 8c1.105 0 2 0.895 2 2s-0.895 2-2 2-2-0.895-2-2 0.895-2 2-2zM10 8c1.105 0 2 0.895 2 2s-0.895 2-2 2-2-0.895-2-2 0.895-2 2-2zM16.994 21.23c-0.039-0.035-0.078-0.072-0.115-0.109-0.586-0.586-0.878-1.353-0.879-2.121-0 0.768-0.293 1.535-0.879 2.121-0.038 0.038-0.076 0.074-0.115 0.109-2.704 2.453-9.006-0.058-9.006-3.23 1.938 1.25 3.452 0.306 4.879-1.121 1.172-1.172 3.071-1.172 4.243 0 0.586 0.586 0.879 1.353 0.879 2.121 0-0.768 0.293-1.535 0.879-2.121 1.172-1.172 3.071-1.172 4.243 0 1.427 1.427 2.941 2.371 4.879 1.121 0 3.173-6.302 5.684-9.006 3.23z'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        // shocked
+                                        series: [
+                                            {
+                                                symbol:
+                                                    'path://M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM10 14c-1.105 0-2-1.343-2-3s0.895-3 2-3 2 1.343 2 3-0.895 3-2 3zM16 26c-2.209 0-4-1.791-4-4s1.791-4 4-4c2.209 0 4 1.791 4 4s-1.791 4-4 4zM22 14c-1.105 0-2-1.343-2-3s0.895-3 2-3 2 1.343 2 3-0.895 3-2 3z'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        // pie chart
+                                        series: [
+                                            {
+                                                symbol:
+                                                    'path://M14 18v-14c-7.732 0-14 6.268-14 14s6.268 14 14 14 14-6.268 14-14c0-2.251-0.532-4.378-1.476-6.262l-12.524 6.262zM28.524 7.738c-2.299-4.588-7.043-7.738-12.524-7.738v14l12.524-6.262z'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        // users
+                                        series: [
+                                            {
+                                                symbol:
+                                                    'path://M10.225 24.854c1.728-1.13 3.877-1.989 6.243-2.513-0.47-0.556-0.897-1.176-1.265-1.844-0.95-1.726-1.453-3.627-1.453-5.497 0-2.689 0-5.228 0.956-7.305 0.928-2.016 2.598-3.265 4.976-3.734-0.529-2.39-1.936-3.961-5.682-3.961-6 0-6 4.029-6 9 0 3.096 1.797 6.191 4 7.432v1.649c-6.784 0.555-12 3.888-12 7.918h8.719c0.454-0.403 0.956-0.787 1.506-1.146zM24 24.082v-1.649c2.203-1.241 4-4.337 4-7.432 0-4.971 0-9-6-9s-6 4.029-6 9c0 3.096 1.797 6.191 4 7.432v1.649c-6.784 0.555-12 3.888-12 7.918h28c0-4.030-5.216-7.364-12-7.918z'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        // mug
+                                        series: [
+                                            {
+                                                symbol:
+                                                    'path://M30 10h-6v-3c0-2.761-5.373-5-12-5s-12 2.239-12 5v20c0 2.761 5.373 5 12 5s12-2.239 12-5v-3h6c1.105 0 2-0.895 2-2v-10c0-1.105-0.895-2-2-2zM5.502 8.075c-1.156-0.381-1.857-0.789-2.232-1.075 0.375-0.286 1.075-0.694 2.232-1.075 1.811-0.597 4.118-0.925 6.498-0.925s4.688 0.329 6.498 0.925c1.156 0.381 1.857 0.789 2.232 1.075-0.375 0.286-1.076 0.694-2.232 1.075-1.811 0.597-4.118 0.925-6.498 0.925s-4.688-0.329-6.498-0.925zM28 20h-4v-6h4v6z'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        // plane
+                                        series: [
+                                            {
+                                                symbol:
+                                                    'path://M24 19.999l-5.713-5.713 13.713-10.286-4-4-17.141 6.858-5.397-5.397c-1.556-1.556-3.728-1.928-4.828-0.828s-0.727 3.273 0.828 4.828l5.396 5.396-6.858 17.143 4 4 10.287-13.715 5.713 5.713v7.999h4l2-6 6-2v-4l-7.999 0z'
+                                            }
+                                        ]
+                                    }
+                                ];
+                                let optionIndex = 0;
+                                option3 = options[optionIndex];
+                                setInterval(function () {
+                                    optionIndex = (optionIndex + 1) % options.length;
+                                    myChart3.setOption(options[optionIndex]);
+                                }, 700);
+
+                                option3 && myChart3.setOption(option3);
+
+                            </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container m-4">
+                        <div class="row">
+                            <div class="col-md-5 d-flex align-items-center justify-content-center">
+                                <div id="E-31" style="width:600px;height: 600px;"></div>
+                                <script>
+                                    var chartDom4 = document.getElementById('E-31');
+                                    var myChart4 = echarts.init(chartDom4);
+                                    var option4;
+
+                                    const gaugeData = [
+                                        {
+                                            value: 20,
+                                            name: '读书',
+                                            title: {
+                                                offsetCenter: ['-40%', '80%']
+                                            },
+                                            detail: {
+                                                offsetCenter: ['-40%', '95%']
+                                            }
+                                        },
+                                        {
+                                            value: 40,
+                                            name: '打游戏',
+                                            title: {
+                                                offsetCenter: ['0%', '80%']
+                                            },
+                                            detail: {
+                                                offsetCenter: ['0%', '95%']
+                                            }
+                                        },
+                                        {
+                                            value: 60,
+                                            name: '睡觉',
+                                            title: {
+                                                offsetCenter: ['40%', '80%']
+                                            },
+                                            detail: {
+                                                offsetCenter: ['40%', '95%']
+                                            }
+                                        }
+                                    ];
+                                    option4 = {
+                                        series: [
+                                            {
+                                                type: 'gauge',
+                                                anchor: {
+                                                    show: true,
+                                                    showAbove: true,
+                                                    size: 18,
+                                                    itemStyle: {
+                                                        color: '#FAC858'
+                                                    }
+                                                },
+                                                pointer: {
+                                                    icon: 'path://M2.9,0.7L2.9,0.7c1.4,0,2.6,1.2,2.6,2.6v115c0,1.4-1.2,2.6-2.6,2.6l0,0c-1.4,0-2.6-1.2-2.6-2.6V3.3C0.3,1.9,1.4,0.7,2.9,0.7z',
+                                                    width: 8,
+                                                    length: '80%',
+                                                    offsetCenter: [0, '8%']
+                                                },
+                                                progress: {
+                                                    show: true,
+                                                    overlap: true,
+                                                    roundCap: true
+                                                },
+                                                axisLine: {
+                                                    roundCap: true
+                                                },
+                                                data: gaugeData,
+                                                title: {
+                                                    fontSize: 14
+                                                },
+                                                detail: {
+                                                    width: 40,
+                                                    height: 14,
+                                                    fontSize: 14,
+                                                    color: '#fff',
+                                                    backgroundColor: 'auto',
+                                                    borderRadius: 3,
+                                                    formatter: '{value}%'
+                                                }
+                                            }
+                                        ]
+                                    };
+                                    setInterval(function () {
+                                        gaugeData[0].value = +(Math.random() * 30 + 70).toFixed(2);
+                                        gaugeData[1].value = +(Math.random() * 40 + 10).toFixed(2);
+                                        gaugeData[2].value = +(Math.random() * 40 + 15).toFixed(2);
+                                        myChart4.setOption({
+                                            series: [
+                                                {
+                                                    data: gaugeData
+                                                }
+                                            ]
+                                        });
+                                    }, 5000);
+
+                                    option4 && myChart4.setOption(option4);
+
+                                </script>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <div id="E-32" style="height: 600px;width: 600px;"></div>
+                                <script>
+                                    var chartDom5 = document.getElementById('E-32');
+                                    var myChart5 = echarts.init(chartDom5);
+                                    var option5;
+
+                                    option5 = {
+                                        graphic: {
+                                            elements: [
+                                                {
+                                                    type: 'text',
+                                                    left: 'center',
+                                                    top: 'center',
+                                                    style: {
+                                                        text: '今日运势\n\n宜 : 读书\n忌 : 倒头大睡',
+                                                        fontSize: 70,
+                                                        fontWeight: 'bold',
+                                                        lineDash: [0, 200],
+                                                        lineDashOffset: 0,
+                                                        fill: 'transparent',
+                                                        stroke: 'rgba(0,0,0,1)',
+                                                        lineWidth: 1
+                                                    },
+                                                    keyframeAnimation: {
+                                                        duration: 5000,
+                                                        loop: true,
+                                                        keyframes: [
+                                                            {
+                                                                percent: 0.7,
+                                                                style: {
+                                                                    fill: 'transparent',
+                                                                    lineDashOffset: 200,
+                                                                    lineDash: [200, 0]
+                                                                }
+                                                            },
+                                                            {
+                                                                // Stop for a while.
+                                                                percent: 2,
+                                                                style: {
+                                                                    fill: 'transparent'
+                                                                }
+                                                            },
+                                                            {
+                                                                percent: 1,
+                                                                style: {
+                                                                    fill: 'rgba(0,0,0,1)'
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    };
+
+                                    option5 && myChart5.setOption(option5);
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+<!--    -->
+</body>
+</html>

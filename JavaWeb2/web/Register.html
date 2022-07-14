@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册 —— 冰淇淋书城</title>
+    <link rel="stylesheet" href="frame/bs-5.2.0/css/bootstrap.min.css">
+    <script src="frame/bs-5.2.0/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color: rgba(110, 110, 180, 0.07);">
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <!-- 图标 -->
+            <br/><br/>
+            <div class="col-lg-12 text-center">
+                <img src="img/2-1.png" class="rounded">
+            </div>
+            <!-- 表单块 -->
+            <br/>
+            <div class="col-lg-12 mb-5" style="box-shadow: 0px 2px 0px rgb(0, 80, 255) inset;border-radius: 5px;padding: 20px;background-color: white;">
+                <!-- 标题 -->
+                <div class="col-lg-12">
+                    <h5 class="text-primary"><b>注册</b></h5>
+                </div>
+                <hr style="color: rgba(0, 0, 0, 0.2);"/>
+                <!-- 表单 -->
+                <div class="col-lg-12">
+<!--                <form action="Register" method="POST" name="form">-->
+<!--                    用ajax提交才能不刷新页面-->
+                <form name="form">
+                    <input type="hidden" name="type" value="Register">
+                    <!-- 昵称 邮箱 -->
+                    <div class="form-group mb-3">
+                        <label class="form-label"><b>昵称</b></label>
+                        <input id="name" name="name" type="name" class="form-control" style="box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label"><b>邮箱</b></label>
+                        <div class="input-group" style="box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
+                            <input id="email" name="email" type="text" class="form-control col-8" required>
+                            <select id="emailtail" name="emailtail" class="from-select input-group-append col-4" style="border-bottom-right-radius: 5px;border-top-right-radius: 5px;border: 1px solid rgba(0, 0, 0, 0.2);" required>
+                                <option value="@qq.com">@qq.com</option>
+                                <option value="@163.com">@163.com</option>
+                                <option value="@gmail.com">@gmail.com</option>
+                                <option value="@outlook.com">@outlook.com</option>
+                                <option value="@126.com">@126.com</option>
+                                <option value="@yeah.net">@yeah.net</option>
+                                <option value="@foxmail.com">@foxmail.com</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- 验证码 -->
+                    <div class="form-group mb-5">
+                        <label class="form-label"><b>验证码</b></label>
+                        <div class="input-group" style="box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
+                            <input id="code" name="code" type="text" class="form-control col-8" required>
+                            <button type="button" id="button1" class="input-group-append col-4 btn btn-outline-primary" onclick="sendemail()">获取验证码</button>
+                        </div>
+                    </div>
+                    <!-- 服务条款 -->
+                    <div class="mb-5 col-lg-12">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onclick="func1()" checked>
+                            <label class="form-check-label" for="flexSwitchCheckDefault">注册即代表同意 服务条款</label>
+                        </div>
+                    </div>
+                    <!-- submit -->
+                    <div class="col-lg-12">
+                        <button id="1" type="button" class="btn btn-primary" style="width: 100%; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);" onclick="tryRegister()">&nbsp;<b>注册</b>&nbsp;</button>
+                    </div>
+                </form>
+                </div>
+                <br/>
+            </div>
+            <!-- 登录 -->
+            <div class="col-lg-12">
+                <p class="text-center" style="font-size:14px;">已有账号&nbsp;&nbsp;<b><a href="index.html" style="text-decoration:none;">马上登录</a></b></p>
+            </div>
+            <!-- 结尾块 -->
+            <br/><br/>
+            <div class="col-lg-12">
+                <p class="text-center" style="font-size:12px;color:rgba(0, 0, 0, 0.6)">Copyright &copy; 2022 冰淇淋书城 </p>
+                <p class="text-center" style="font-size:12px;color:rgba(0, 0, 0, 0.6)">Powered by ALABF &bull; Theme by bootstrap</p>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+    </div>
+<!--    模态框-->
+    <div class="modal fade" id="MessageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="ModalText" class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //验证码20s发一次
+        function func1(){
+            console.log(document.getElementById("1").disabled);
+            if(document.getElementById("1").disabled)
+            {document.getElementById("1").disabled="";}
+            else
+            {document.getElementById("1").disabled="true";}
+        }
+        function checkChar(c) {
+            return /^[a-zA-Z]/.test(c) || /^[\u4e00-\u9fa5]/.test(c) || /[0-9]/.test(c);
+        }
+        //不在函数里,始终保持监听
+        var timer;
+        function sendemail(){
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            //检查email不能有多余的@
+            if(email.indexOf("@") != -1){
+                //提示邮箱格式错误
+                showModal("邮箱格式错误")
+                return;
+            }
+            //name不能超过16个字符
+            if(name.length > 16){
+                showModal("昵称不能超过16个单位");
+                return;
+            }
+            //name不能包含空格,不然cookies报错
+            for(var i=0;i<name.length;++i){
+                if(!checkChar(name[i])){
+                    showModal("昵称只能包含中文、字母、数字");
+                    return;
+                }
+            }
+            email = email + document.getElementById("emailtail").value;
+            //console.log(email);
+            //用ajax把email发送到servlet
+            var request = new XMLHttpRequest();
+            request.open("POST","SendEmail",true);
+            request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+            var message = "email="+email+"&type=Register";
+            request.send(message);//可以发送且接收成功
+            //禁用验证码按钮
+            clearInterval(timer);
+            var button1 =document.getElementById("button1");
+            var interval = 30;
+            button1.disabled = "disabled";
+            button1.innerText = interval + "s后再次";
+            timer = setInterval(function(){
+                interval--;
+                if(interval==0){
+                    button1.disabled = false;
+                    button1.innerHTML = "获取验证码";
+                    clearInterval(timer);
+                    return false;
+                }
+                button1.innerText = interval + "s后再次";
+            },1000);
+            //处理后端返回的值
+            //ajax 0-用户已存在
+            //1-验证码错误
+            //2-注册成功
+            request.onreadystatechange = function (){
+                if(request.readyState === 4 && request.status === 200){
+                    var flag = request.responseText;
+                    console.log(flag);
+                    if(flag == "0"){
+                        showModal("用户已存在");
+                    }else {
+                        showModal("验证码已发送,请注意查收");
+                    }
+                }
+            }
+        }
+        function tryRegister() {
+            var request = new XMLHttpRequest();
+            request.open("POST","Register",true);
+            request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+            //处理后端返回的值
+            //ajax 0-用户已存在
+            //1-验证码错误
+            //2-注册成功
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value + document.getElementById("emailtail").value;
+            var code = document.getElementById("code").value;
+            var message = "name="+name+"&email="+email+"&code="+code;
+            request.send(message);
+            request.onreadystatechange = function (){
+                if(request.readyState === 4 && request.status === 200){
+                    var flag = request.responseText;
+                    console.log(flag);
+                    if(flag == "1") {
+                        showModal("验证码错误");
+                    }else if(flag == "2"){
+                        showModal("注册成功");
+                        setTimeout(function (){window.location.href="index.html";},2000);
+                    }
+                }
+            }
+        }
+        function textCheck(text) {
+            for(t in text){
+                if(t == ' '){
+                    return false;
+                }
+            }
+            return true;
+        }
+        function showModal(text){
+            document.getElementById("ModalText").innerText=text;
+            var modal = new bootstrap.Modal(document.getElementById('MessageModal'));
+            modal.show();
+        }
+    </script>
+</body>
+</html>

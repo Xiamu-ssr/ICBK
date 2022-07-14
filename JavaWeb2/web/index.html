@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>夏日冰淇淋~</title>
+    <link rel="stylesheet" href="frame/bs-5.2.0/css/bootstrap.min.css">
+    <script src="frame/bs-5.2.0/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color: rgba(110, 110, 180, 0.07);">
+    <div class="container">
+        <div class="row">
+            <!-- 幻灯片 -->
+            <div class="col-lg-8" style="height: 800px;">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner" style="border-radius: 10px;">
+                        <div class="carousel-item active">
+                            <img src="img/1-1.jpg" class="d-block" style="max-height: 800px;width:auto;" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5>First slide label</h5>
+                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/1-2.jpg" class="d-block" style="max-height: 800px;width:auto;" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5>Second slide label</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/1-3.png" class="d-block" style="max-height: 800px;width:auto;" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5>Third slide label</h5>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4" style="height: 800px;background-color: white;border-radius: 10px;">
+                <!-- 图标及商标 -->
+                <br/><br/>
+                <div class="row">
+                <!-- <div class="col-lg-1"></div> -->
+                <div class="col-lg-11" style="padding-left: 6%;">
+                    <img src="img/2-1.png" alt="...">
+                    <span style="font-size:100px;float:right;font-family: fantasy;text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);">ICBK</span>
+                </div>
+                <div class="col-lg-1"></div>
+                </div>
+                <!-- 欢迎词 -->
+                <br/>
+                <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <span style="font-size:30px;">欢迎使用 <b>冰淇淋书城</b></span>
+                    <br/><span style="font-size: 12px;color:rgba(0, 0, 0, 0.7)">感谢选择冰淇淋书城</span>
+                </div>
+                <div class="col-lg-1"></div>
+                </div>
+                <!-- 表单 -->
+                <br/><br/>
+                <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <form name="form">
+                        <input type="hidden" name="type" value="Login">
+                        <div class="mb-4">
+                            <label class="form-label"><b>邮箱</b></label>
+                            <input id="email" name="email" type="email" class="form-control" style="box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label"><b>验证码</b></label>
+                            <div class="input-group" style="box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
+                                <input id="code" name="code" type="text" class="form-control col-8" required>
+                                <button type="button" id="button1" class="input-group-append col-4 btn btn-outline-primary" onclick="sendemail()">获取验证码</button>
+                            </div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">打√送地狱火</label>
+                        </div>
+                        <button type="button" class="btn btn-primary" style="float: right;box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);" onclick="tryLogin()">&nbsp;<b>登录</b>&nbsp;</button>
+                    </form>
+                </div>
+                <div class="col-lg-1"></div>
+                </div>
+                <!-- 注册 -->
+                <br/><br/>
+                <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10 ">
+                    <p class="text-center" style="font-size:14px;">还没有账号?&nbsp;&nbsp;<b><a href="Register.html" style="text-decoration:none;">马上注册</a></b></p>
+                </div>
+                <div class="col-lg-1"></div>
+                </div>
+                <!-- 结尾块 -->
+                <br/><br/>
+                <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <p class="text-center" style="font-size:12px;color:rgba(0, 0, 0, 0.6)">Copyright &copy; 2022 冰淇淋书城 </p>
+                    <p class="text-center" style="font-size:12px;color:rgba(0, 0, 0, 0.6)"><b onclick="ContactUs()">联系我们</b> &bull; Theme by bootstrap</p>
+                </div>
+                <div class="col-lg-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    模态框-->
+    <div class="modal fade" id="MessageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="ModalText" class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var timer;
+        function sendemail(){
+            //用ajax把email发送到servlet
+            var email = document.getElementById("email").value;
+            var request = new XMLHttpRequest();
+            request.open("POST","SendEmail",true);
+            request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+            var message = "email="+email+"&type=Login";
+            request.send(message);//可以发送且接收成功
+            //禁用验证码按钮
+            clearInterval(timer);
+            var button1 =document.getElementById("button1");
+            var interval = 30;
+            button1.disabled = "disabled";
+            button1.innerText = interval + "s后再次";
+            timer = setInterval(function(){
+                interval--;
+                if(interval==0){
+                    button1.disabled = false;
+                    button1.innerHTML = "获取验证码";
+                    clearInterval(timer);
+                    return false;
+                }
+                button1.innerText = interval + "s后再次";
+            },1000);
+            //处理后端返回的值
+            //ajax 0-用户不存在
+            //1-验证码错误
+            //2-正确登录
+            request.onreadystatechange = function () {
+                if (request.readyState === 4 && request.status === 200) {
+                    var flag = request.responseText;
+                    console.log(flag);
+                    if (flag == "0") {
+                        showModal("用户不存在");
+                    } else {
+                        showModal("验证码已发送,请注意查收");
+                    }
+                }
+            }
+        }
+        function tryLogin(){
+            console.log("ok");
+            var request = new XMLHttpRequest();
+            request.open("POST","Login",true);
+            request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+            var email = document.getElementById("email").value;
+            var code = document.getElementById("code").value;
+            var message = "email="+email+"&code="+code;
+            request.send(message);
+            //处理后端返回的值
+            //ajax 0-用户不存在
+            //1-验证码错误
+            //2-正确登录
+            request.onreadystatechange = function () {
+                if (request.readyState === 4 && request.status === 200) {
+                    var flag = request.responseText;
+                    console.log(flag);
+                    if (flag == "1") {
+                        showModal("验证码错误");
+                    }else if(flag== "3"){
+                        showModal("你登录了管理员账号");
+                        setTimeout(function () {
+                            window.location.href = "BookManager.jsp";
+                        }, 2000);
+                    } else if (flag == "2") {
+                        showModal("欢迎登录ICBK");
+                        setTimeout(function () {
+                            window.location.href = "main.html";
+                        }, 2000);
+                    }
+                }
+            }
+        }
+        function ContactUs(){
+            showModal("温一壶月光下酒:2556419331@qq.com\n夏木:1138882663@qq.com");
+        }
+        function showModal(text){
+            document.getElementById("ModalText").innerText=text;
+            var modal = new bootstrap.Modal(document.getElementById('MessageModal'));
+            modal.show();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>书籍简介</title>
+    <link rel="stylesheet" href="frame/bs-5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <script src="frame/bs-5.2.0/js/bootstrap.min.js"></script>
+    <script src="frame/bs-5.2.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .routeImg{
+            box-shadow: 0px 0px 10px rgba(13, 202, 240, 0.5);
+            animation-duration: 0.2s;
+            animation-name: routeImgBack;
+            animation-fill-mode: forwards;
+        }
+        .routeImg:hover
+        {
+            animation-duration: 0.3s;
+            animation-name: routeImg;
+            animation-fill-mode: forwards;
+        }
+        @keyframes routeImg {
+        from{transform:rotate3d(1,-1,0,-0deg);}
+        to{transform:rotate3d(1,-1,0,-20deg);}
+        }
+        @keyframes routeImgBack {
+            0%{transform:rotate3d(1,-1,0,-20deg);}
+            50%{transform:rotate3d(1,1,0,-20deg);}
+            100%{transform:rotate3d(1,1,0,-0deg);}
+        }
+    </style>
+</head>
+<body style="background-color: rgba(255,151,0,0.1)">
+<br>
+    <div class="container">
+    <div class="row">
+        <!--        导航-->
+        <div class="col-lg-12 mb-5">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius: 10px;box-shadow: 0px 0px 7px rgba(13,202,240,0.5)">
+                <div class="container-fluid">
+                    <!--                    ICBK图标及标签-->
+                    <div class="card bg-light" style="border: none">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="img/main-1.png">
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-6 align-items-center d-flex text-info">
+                                <div><b style="font-size: 30px;">ICBK&nbsp;&nbsp;</b></div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                    <!--                    宽度变小时,导航收纳-->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <!--                            主页-->
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="main.html"><button class="btn btn-outline-info"><b>主 页</b></button></a>
+                            </li>
+                            <!--                            其他分类-->
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="BookType.html?type=计算机与互联网"><button class="btn btn-outline-info"><b>计算机与互联网</b></button></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="BookType.html?type=文学"><button class="btn btn-outline-info"><b>文学</b></button></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="BookType.html?type=科技科普"><button class="btn btn-outline-info"><b>科技科普</b></button></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="BookType.html?type=生活"><button class="btn btn-outline-info"><b>生活</b></button></a>
+                            </li>
+                            <!--                            省略分类-->
+                            <li class="nav-item dropdown">
+                                <div class="btn-group mt-2">
+                                    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <b>被折叠的</b>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="BookType.html?type=成功励志">成功励志</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=教育考试">教育考试</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=经济管理">经济管理</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=人文社科">人文社科</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=少儿">少儿</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=小说">小说</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=艺术设计">艺术设计</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="#">Nothing Here</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="d-flex">
+                            <input class="form-control me-2 border-info text-info" type="search" placeholder="Search" aria-label="Search" disabled>
+                            <button class="btn btn-outline-info" type="button" disabled>Search</button>
+                        </div>
+                    </div>
+                    <!--                    账户头像-->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle bg-light" style="border: none;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="img/Brief-account.png">
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
+                            <li><b id="UserName" class="font-kai"></b></li>
+                            <script>
+                                //读取cookie
+                                function getCookie(name)
+                                {
+                                    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+                                    if(arr=document.cookie.match(reg))
+
+                                        return decodeURI(arr[2]);
+                                    else
+                                        return null;
+                                }
+                                document.getElementById("UserName").innerHTML = getCookie("UserName");
+                            </script>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="index.html">切换账号</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+<!--        介绍页-->
+        <div class="row mt-5">
+<!--            留白-->
+            <div class="col-lg-1"></div>
+<!--            书籍图片-->
+            <div class="col-lg-4" style="margin-right: 10px;">
+                <div class="text-center">
+                    <img id="bookimg" class="rounded routeImg" src="https://pic.arkread.com/cover/ebook/f/34157247.1653694483.jpg!cover_default.jpg">
+                </div>
+            </div>
+<!--            信息-->
+            <div class="col-lg-4 routeImg" style="background-color: white;border-radius: 10px;box-shadow: 0px 0px 10px rgba(13,202,240,0.5);">
+                <div class="row">
+<!--                    书名-->
+                    <div class="col-md-12 mb-1 mt-2">
+                        <b id="bookname" style="font-family: fantasy   ;font-size: 24px;">月亮与六便士（作家榜经典）</b>
+                    </div>
+<!--                    评分和RMB-->
+                    <div class="col-md-4 d-flex align-items-center mb-1">
+                        <img src="img/Brief-star.png">&nbsp;&nbsp;
+                        <b id="bookscore" style="font-size: 20px">9.6</b>
+                    </div>
+                    <div class="col-md-8 d-flex align-items-center mb-1">
+                        <img src="img/Brief-RMB.png">&nbsp;&nbsp;
+                        <b id="bookRMB" style="font-size: 20px">￥39.80</b>
+                    </div>
+<!--                    作者-->
+                    <div class="col-md-12 mb-1">
+                        <b id="bookwriter" class="text-info" style="font-size: 12px;">[英] 毛姆</b>
+                    </div>
+<!--                    分类和出版社-->
+                    <div class="col-md-12 mb-1">
+                        <b id="booktype" style="font-size: 12px;color: rgba(0,0,0,0.5);">图书分级：世界名著</b>
+                        &nbsp;&nbsp;
+                        <b id="bookpublisher"style="font-size: 12px;color: rgba(0,0,0,0.5);">出版信息：浙江文艺出版社/ 2017-01</b>
+                    </div>
+<!--                    ISBN-->
+                    <div class="col-md-12 mb-4">
+                        <b id="bookISBN" style="font-size: 12px;color: rgba(0,0,0,0.5);">ISBN:9787533936020</b>
+                    </div>
+<!--                    内容简介 -->
+                    <div class="col-md-12 d-flex align-items-center mb-1">
+                        <b id="bookContent" style="font-size: 12px;color: rgba(0,0,0,0.9);">银行家查尔斯，人到中年，事业有成，为了追求内心隐秘的绘画梦想，突然抛妻别子，弃家出走。他深知：人的每一种身份都是一种自我绑架，唯有失去是通向自由之途。在异国他乡，他贫病交加，对梦想却愈发坚定执着。他说：我必须画画，就像溺水的人必须挣扎。 在经历种种离奇遭遇后，他来到南太平洋的一座孤岛，同当地一位姑娘结婚生子，成功创作出一系列惊世杰作。就在此时，他被绝症和双目失明击倒，临死之前，他做出了让所有人震惊的决定…… 威廉·萨默塞特·毛姆，英国小说家，剧作家，被誉为“故事圣手”。生于巴黎，十岁前父母双亡，由叔叔接回英国抚养，因身材矮小，说话结巴，总被同龄人欺凌，性格孤僻敏感。在文学界，毛姆是一个优雅、老到、冷漠的人性观察者，几乎每一个人都能在他的故事中看到自己，这也让毛姆成为二十世纪炙手可热的作家。 他的后半生住在一座仙境般的别墅里，晚年几乎获得了整个欧洲文学界的一切殊荣。91岁时，逝于法国。经典代表作：《月亮与六便士》《人性的枷锁》。</b>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-2" style="margin-left: 10px;background-color: white;border-radius: 10px;box-shadow: 0px 0px 10px rgba(13,202,240,0.5);">
+                <div class="col-lg-12 text-center mt-2 mb-5" style="font-size: 20px"><b>阅 读 查 询</b></div>
+                <a id="Amazon" href="https://www.amazon.cn/s?k=月亮" target="_blank"><button class="col-lg-12 btn btn-outline-info mb-3">Amazon</button></a>
+                <a id="LIBRARY" href="https://www.loc.gov/collections/world-digital-library/?q=月亮" target="_blank"><button class="col-lg-12 btn btn-outline-info mb-3">LIBRARY</button></a>
+                <a id="SoBooks" href="https://sobooks.net/search/月亮" target="_blank"><button class="col-lg-12 btn btn-outline-info mb-3">SoBooks</button></a>
+                <div class="col-lg-12 text-center mt-2 mb-1" style="font-size: 16px;color: rgba(0,0,0,0.5)"><b>(NEED VPN)</b></div>
+                <a id="Pubu" href="https://www.pubu.com.tw/search?q=月亮" target="_blank"><button class="col-lg-12 btn btn-outline-warning mb-3">Pubu</button></a>
+                <a id="MyBook" href="https://mybook.taiwanmobile.com/search/q/月亮" target="_blank"><button class="col-lg-12 btn btn-outline-warning mb-3">MyBook</button></a>
+                <a id="BookWalker" href="https://www.bookwalker.com.tw/search?w=月亮" target="_blank"><button class="col-lg-12 btn btn-outline-warning mb-3">BookWalker</button></a>
+            </div>
+<!--                留白-->
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+    </div>
+<!--script-->
+<script>
+    var ReadLink = {
+        Amazon: "https://www.amazon.cn/s?k=",
+        LIBRARY: "https://www.loc.gov/collections/world-digital-library/?q=",
+        SoBooks: "https://sobooks.net/search/",
+        Pubu: "https://www.pubu.com.tw/search?q=",
+        MyBook: "https://mybook.taiwanmobile.com/search/q/",
+        BookWalker: "https://www.bookwalker.com.tw/search?w="
+    }
+    //从url取得params
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+    }
+    //填充书籍信息
+    function fillText(id,param){
+        document.getElementById(id).innerHTML=param;
+    }
+    //填充阅读链接
+    function fillLink(Dir,key){
+        var link=ReadLink[Dir]+key;
+        document.getElementById(Dir).href = link;
+    }
+    //ajax发送书面取得书籍所有信息
+    var request = new XMLHttpRequest();
+    request.open("POST","BookBrief",true);
+    request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+    var message = "BookName=" + encodeURIComponent(getQueryVariable("BookName"));
+    request.send(message);
+    //接受信息
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            var json = request.responseText;
+            var params = JSON.parse(json);
+            // console.log(params[0].imgurl);
+        //    将信息填入页面
+            document.getElementById("bookimg").src = params[0].imgurl;
+            fillText("bookname",params[0].bookname);
+            fillText("bookscore",params[0].bookscore);
+            fillText("bookRMB",params[0].rmb);
+            fillText("bookwriter",params[0].bookwriter);
+            fillText("booktype",params[0].other);
+            fillText("bookpublisher",params[0].bookpublisher);
+            fillText("bookISBN",params[0].isbn);
+            fillText("bookContent",params[0].bookbrief);
+        //    更新阅读链接
+            fillLink("Amazon",params[0].bookname);
+            fillLink("LIBRARY",params[0].bookname);
+            fillLink("SoBooks",params[0].bookname);
+            fillLink("Pubu",params[0].bookname);
+            fillLink("MyBook",params[0].bookname);
+            fillLink("BookWalker",params[0].bookname);
+
+        }
+    }
+</script>
+</body>
+</html>

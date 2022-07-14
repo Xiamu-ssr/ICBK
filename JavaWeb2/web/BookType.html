@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>冰淇淋书城</title>
+    <link rel="stylesheet" href="frame/bs-5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <script src="frame/bs-5.2.0/js/bootstrap.min.js"></script>
+    <script src="frame/bs-5.2.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .routeImg{
+            box-shadow: 0px 0px 10px rgba(13, 202, 240, 0.5);
+            animation-duration: 0.2s;
+            animation-name: routeImgBack;
+            animation-fill-mode: forwards;
+        }
+        .routeImg:hover
+        {
+            animation-duration: 0.3s;
+            animation-name: routeImg;
+            animation-fill-mode: forwards;
+        }
+        @keyframes routeImg {
+            from{transform:rotate3d(1,-1,0,-0deg);}
+            to{transform:rotate3d(1,-1,0,-20deg);}
+        }
+        @keyframes routeImgBack {
+            0%{transform:rotate3d(1,-1,0,-20deg);}
+            50%{transform:rotate3d(1,1,0,-20deg);}
+            100%{transform:rotate3d(1,1,0,-0deg);}
+        }
+    </style>
+</head>
+<body style="background-color: rgba(255,151,0,0.1)">
+<br>
+<div class="container">
+    <div class="row">
+        <!--        导航-->
+        <div class="col-lg-12 mb-5">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius: 10px;box-shadow: 0px 0px 7px rgba(13,202,240,0.5)">
+                <div class="container-fluid">
+                    <!--                    ICBK图标及标签-->
+                    <div class="card bg-light" style="border: none">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="img/main-1.png">
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-6 align-items-center d-flex text-info">
+                                <div><b style="font-size: 30px;">ICBK&nbsp;&nbsp;</b></div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                    <!--                    宽度变小时,导航收纳-->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <!--                            主页-->
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="main.html"><button class="btn btn-outline-info"><b>主 页</b></button></a>
+                            </li>
+                            <!--                            其他分类-->
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="BookType.html?type=计算机与互联网"><button class="btn btn-outline-info"><b>计算机与互联网</b></button></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="BookType.html?type=文学"><button class="btn btn-outline-info"><b>文学</b></button></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="BookType.html?type=科技科普"><button class="btn btn-outline-info"><b>科技科普</b></button></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="BookType.html?type=生活"><button class="btn btn-outline-info"><b>生活</b></button></a>
+                            </li>
+                            <!--                            省略分类-->
+                            <li class="nav-item dropdown">
+                                <div class="btn-group mt-2">
+                                    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <b>被折叠的</b>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="BookType.html?type=成功励志">成功励志</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=教育考试">教育考试</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=经济管理">经济管理</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=人文社科">人文社科</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=少儿">少儿</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=小说">小说</a></li>
+                                        <li><a class="dropdown-item" href="BookType.html?type=艺术设计">艺术设计</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="#">Nothing Here</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="d-flex">
+                            <input class="form-control me-2 border-info text-info" type="search" placeholder="Search" aria-label="Search" disabled>
+                            <button class="btn btn-outline-info" type="button" disabled>Search</button>
+                        </div>
+                    </div>
+                    <!--                    账户头像-->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle bg-light" style="border: none;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="img/Brief-account.png">
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
+                            <li><b id="UserName" class="font-kai"></b></li>
+                            <script>
+                                //读取cookie
+                                function getCookie(name)
+                                {
+                                    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+                                    if(arr=document.cookie.match(reg))
+
+                                        return decodeURI(arr[2]);
+                                    else
+                                        return null;
+                                }
+                                document.getElementById("UserName").innerHTML = getCookie("UserName");
+                            </script>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="index.html">切换账号</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+<!--        -->
+<!--            <div class="col-lg-2 p-3 border-info" style="border: 1px solid">-->
+<!--                <a href="BookBrief.html?BookName=局外人"><img class="w-100 routeImg" src="https://pic.arkread.com/cover/ebook/f/754089.1653713683.jpg!cover_default.jpg"></a>-->
+<!--                <div class="text-dark font-song" style="font-size: 16px;"><b>局外人</b>&nbsp;<span class="text-dark" style="font-size: 12px;">[英]毛姆</span></div>-->
+<!--                <div>-->
+<!--                    <img src="img/Type-star.png">&nbsp;&nbsp;-->
+<!--                    <b id="bookscore" style="font-size: 16px">9.6</b>-->
+<!--                </div>-->
+<!--            </div>-->
+        <div id="AllContentPlaceHolder" class="row mt-5">
+<!--        AllContent-->
+        </div>
+    </div>
+</div>
+<!--  script  -->
+    <script>
+        //从url取得params
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable){return pair[1];}
+            }
+            return(false);
+        }
+        function searchbook(){
+            window.location.href = "BookBrief.html?BookName="+document.getElementById("searchbook").value;
+        }
+        var type =decodeURI(getQueryVariable("type"));
+        document.title = type;
+        var request =new XMLHttpRequest();
+        request.open("POST","BookType",true);
+        request.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+        var message = "type="+type;
+        request.send(message);
+        request.onreadystatechange = function (){
+            if(request.readyState === 4 && request.status === 200){
+                var json = request.responseText;
+                var params = JSON.parse(json);
+            //    循环填充
+                var AllContent = "";
+                for(var i=0;i<params.length;++i){
+                    AllContent+="<div class=\"col-lg-2 p-3\">";
+                    AllContent+="<a href=\"BookBrief.html?BookName="+params[i].bookname+"\"><img class=\"w-100 routeImg\" src=\""+params[i].imgurl+"\"></a>";
+                    AllContent+="<div class=\"text-dark font-song\" style=\"font-size: 16px;\"><b>"+params[i].bookname+"</b>&nbsp;<span class=\"text-dark\" style=\"font-size: 12px;\">"+params[i].bookwriter+"</span></div>";
+                    AllContent+="<div>";
+                    AllContent+="<img src=\"img/Type-star.png\">&nbsp;&nbsp;";
+                    AllContent+="<b id=\"bookscore\" style=\"font-size: 16px\">"+params[i].bookscore+"</b>";
+                    AllContent+="</div>"
+                    AllContent+="</div>";
+                }
+                document.getElementById("AllContentPlaceHolder").innerHTML = AllContent;
+            }
+        }
+    </script>
+</body>
+</html>
